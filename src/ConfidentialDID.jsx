@@ -6,7 +6,7 @@ import { Contract } from "ethers";
 import confidentialDIDABI from "./abi/confidentialDIDABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0xa7AeaA5f5ECAD870FCd86a36599310c7600A4618";
+const CONTRACT_ADDRESS = "0x9fF4097E6d4052dAfa4EF7B36AaC8127EBa97372";
 
 function ConfidentialDID() {
   const [creditScore, setCreditScore] = useState(0);
@@ -42,7 +42,7 @@ function ConfidentialDID() {
       );
       setLoading('Encrypting "30" and generating ZK proof...');
       setLoading("Sending transaction...");
-      const transaction = await contract.store(
+      const transaction = await contract.storeDemo(
         "0x" + encryptedData,
         { gasLimit: 1000000 }
       );
