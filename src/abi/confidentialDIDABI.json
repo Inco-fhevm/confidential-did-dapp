@@ -39,6 +39,19 @@
   {
     "inputs": [
       {
+        "internalType": "bytes",
+        "name": "encryptedCreditScore",
+        "type": "bytes"
+      }
+    ],
+    "name": "storeDemo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "string",
         "name": "str",
         "type": "string"
@@ -52,6 +65,24 @@
     "inputs": [],
     "name": "EIP712DomainChanged",
     "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "encryptedCreditScore",
+        "type": "bytes"
+      }
+    ],
+    "name": "store",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -113,24 +144,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes",
-        "name": "encryptedCreditScore",
-        "type": "bytes"
-      }
-    ],
-    "name": "store",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

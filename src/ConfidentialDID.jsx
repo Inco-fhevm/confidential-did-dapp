@@ -6,7 +6,7 @@ import { Contract } from "ethers";
 import confidentialDIDABI from "./abi/confidentialDIDABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0xee57dAE61e8dE390d590da80E223158E8272c249";
+const CONTRACT_ADDRESS = "0x9fF4097E6d4052dAfa4EF7B36AaC8127EBa97372";
 
 function ConfidentialDID() {
   const [creditScore, setCreditScore] = useState(0);
@@ -26,9 +26,7 @@ function ConfidentialDID() {
   const handleCreditScoreChange = (e) => {
     setCreditScore(Number(e.target.value));
     if (instance) {
-      console.log(Number(e.target.value));
       const encrypted = instance.encrypt16(Number(e.target.value));
-      console.log(toHexString(encrypted));
       setEncryptedData(toHexString(encrypted));
     }
   };
@@ -44,14 +42,15 @@ function ConfidentialDID() {
       );
       setLoading('Encrypting "30" and generating ZK proof...');
       setLoading("Sending transaction...");
-      const transaction = await contract.store(
-        signer.address,
-        "0x" + encryptedData
+      const transaction = await contract.storeDemo(
+        "0x" + encryptedData,
+        { gasLimit: 1000000 }
       );
       setLoading("Waiting for transaction validation...");
       await provider.waitForTransaction(transaction.hash);
       setLoading("");
       setDialog("Credit Score has been stored!");
+      console.log('txHash', transaction.hash);
     } catch (e) {
       console.log(e);
       setLoading("");
@@ -74,7 +73,6 @@ function ConfidentialDID() {
         signer
       );
       const ciphertext = await contract.viewOwnScore(publicKey, signature);
-      console.log(ciphertext);
       const userCreditScoreDecrypted = instance.decrypt(
         CONTRACT_ADDRESS,
         ciphertext
